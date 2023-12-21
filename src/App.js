@@ -9,10 +9,15 @@ const App = () => {
   const [terms, setTerms] = useState("");
 
   const searchMovies = async (title) => {
+    try {
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
+    console.log("API Response:", data);
 
     setMovies(data.Search);
+  } catch (error) {
+    console.error("API Error:", error);
+  }
   };
 
   useEffect(() => {
